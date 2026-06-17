@@ -1,0 +1,15 @@
+\begin{table}[h]
+\centering
+\caption{Cross-Modal Speech-Music Emotion Transfer Results on IEMOCAP (4-class, 5-fold LOSO)}
+\label{tab:results}
+\begin{tabular}{lcc}
+\toprule
+Model & UA (\%) & WA (\%) \\
+\midrule
+Baseline (HuBERT-only) & $63.59 \pm 2.06$ & $62.27 \pm 1.68$ \\
+\textbf{CMSMET (SupCon+LP-FT)} & $\mathbf{60.57 \pm 3.12}$ & $\mathbf{60.08 \pm 2.37}$ \\
+\bottomrule
+\end{tabular}
+\vspace{2mm}
+\footnotesize{$\Delta$UA = -3.02\%, $p = 0.0004$ (paired t-test)}
+\end{table}

@@ -1,0 +1,689 @@
+2026-06-14 21:02:56,287 | ======================================================================
+2026-06-14 21:02:56,288 | CMSMET PAPER EXPERIMENT (LEAK-FREE: per-fold Stage 1)
+2026-06-14 21:02:56,288 | Baseline (HuBERT-only, simple) vs CMSMET (HuBERT+MERT, SupCon+LP-FT)
+2026-06-14 21:02:56,288 | ======================================================================
+2026-06-14 21:02:56,288 | Device: cuda
+2026-06-14 21:02:56,289 | Seeds: [42, 123, 456]
+2026-06-14 21:02:56,289 | Output: C:\Users\Faraz\CMSMET\outputs\paper_results
+2026-06-14 21:02:56,289 | Stage 1: SupCon retrained per fold with MERT music (leak-free)
+2026-06-14 21:02:56,289 | Baseline config: {
+  "embedding_dim": 768,
+  "projection_hidden": 256,
+  "projection_output": 128,
+  "num_classes": 4,
+  "dropout": 0.2,
+  "num_epochs": 100,
+  "batch_size": 64,
+  "gradient_clip": 1.0,
+  "patience": 15,
+  "loss": "cross_entropy",
+  "label_smoothing": 0.1,
+  "optimizer": "adamw",
+  "learning_rate": 0.0001,
+  "weight_decay": 1e-05,
+  "scheduler": "cosine",
+  "alpha": 1.0,
+  "lp_epochs": 0,
+  "lp_lr": 0.0001,
+  "ft_proj_lr": 1e-05
+}
+2026-06-14 21:02:56,290 | Contrastive config: {
+  "embedding_dim": 768,
+  "projection_hidden": 256,
+  "projection_output": 128,
+  "num_classes": 4,
+  "dropout": 0.2,
+  "num_epochs": 100,
+  "batch_size": 64,
+  "gradient_clip": 1.0,
+  "patience": 15,
+  "loss": "cross_entropy",
+  "label_smoothing": 0.1,
+  "optimizer": "adamw",
+  "learning_rate": 0.0001,
+  "weight_decay": 1e-05,
+  "scheduler": "cosine",
+  "alpha": 1.0,
+  "lp_epochs": 0,
+  "lp_lr": 0.0001,
+  "ft_proj_lr": 1e-05
+}
+2026-06-14 21:02:56,290 | 
+2026-06-14 21:02:56,290 | Loading speech data...
+2026-06-14 21:02:56,360 | Loaded 4444 train embeddings and 1085 test embeddings
+2026-06-14 21:02:57,430 | Loaded 4444 train samples and 1085 test samples from IEMOCAP
+2026-06-14 21:02:57,443 | Matched 5529 total samples with valid embeddings and labels
+2026-06-14 21:02:57,445 |   Class 0 (happy): 1635 samples (29.6%)
+2026-06-14 21:02:57,446 |   Class 1 (sad): 1083 samples (19.6%)
+2026-06-14 21:02:57,446 |   Class 2 (angry): 1103 samples (19.9%)
+2026-06-14 21:02:57,446 |   Class 3 (neutral): 1708 samples (30.9%)
+2026-06-14 21:02:57,446 |   Session 1: 1085 samples
+2026-06-14 21:02:57,446 |   Session 2: 1023 samples
+2026-06-14 21:02:57,447 |   Session 3: 1151 samples
+2026-06-14 21:02:57,447 |   Session 4: 1031 samples
+2026-06-14 21:02:57,447 |   Session 5: 1239 samples
+2026-06-14 21:02:57,453 | Loading music data...
+2026-06-14 21:02:57,453 | Loading HuBERT DEAM music embeddings from C:\Users\Faraz\CMSMET\outputs\embeddings\deam_embeddings.npy...
+2026-06-14 21:03:03,491 | Loaded 2790 HuBERT music embeddings: Happy: 903, Sad: 1208, Angry: 423, Neutral: 256
+2026-06-14 21:03:03,494 | Loading MERT DEAM music embeddings from C:\Users\Faraz\CMSMET\outputs\embeddings\deam_mert_embeddings.npy...
+2026-06-14 21:03:05,146 | Loaded 13240 MERT music embeddings: Happy: 4353, Sad: 4871, Angry: 1977, Neutral: 2039
+2026-06-14 21:03:05,146 |   MERT embedding dimension: 768
+2026-06-14 21:03:05,159 | 
+======================================================================
+2026-06-14 21:03:05,160 | LOSO EXPERIMENT: 5 folds x 3 seeds = 15 runs per model
+2026-06-14 21:03:05,160 |   Baseline:     simple end-to-end (lp_epochs=0)
+2026-06-14 21:03:05,160 |   Contrastive:  SupCon(MERT) + LP-FT (lp_epochs=0)
+2026-06-14 21:03:05,160 | ======================================================================
+
+2026-06-14 21:03:05,170 | --- FOLD 1/5: Test Session 1 (train=4444, test=1085) ---
+2026-06-14 21:03:05,179 |   [Stage1-Fold] Training SupCon excluding session 1 (4444 train, 1085 held-out)
+2026-06-14 21:03:09,568 |   [Stage1-Fold] Epoch 1/50 Loss: 5.0133 (best: 5.0133)
+2026-06-14 21:03:32,703 |   [Stage1-Fold] Epoch 10/50 Loss: 4.3089 (best: 4.3089)
+2026-06-14 21:03:50,148 |   [Stage1-Fold] Epoch 20/50 Loss: 3.7848 (best: 3.7848)
+2026-06-14 21:04:17,648 |   [Stage1-Fold] Epoch 30/50 Loss: 3.5832 (best: 3.5832)
+2026-06-14 21:04:41,035 |   [Stage1-Fold] Epoch 40/50 Loss: 3.5280 (best: 3.5267)
+2026-06-14 21:05:07,055 |   [Stage1-Fold] Epoch 50/50 Loss: 3.5051 (best: 3.5042)
+2026-06-14 21:05:07,055 |   [Stage1-Fold] Done. Best loss: 3.5042
+2026-06-14 21:05:07,128 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:05:07,130 |   Model type: baseline
+2026-06-14 21:05:07,130 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:05:07,130 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:05:07,130 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:05:07,130 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:05:07,130 |   AMP: True
+2026-06-14 21:05:07,132 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:05:09,124 |     Epoch   1 | Train Loss: 1.2856 | Val Loss: 1.1528 | UA: 0.4999 | WA: 0.4912 ★
+2026-06-14 21:05:10,736 |     Epoch   2 | Train Loss: 1.1684 | Val Loss: 1.0780 | UA: 0.6026 | WA: 0.5705 ★
+2026-06-14 21:05:12,448 |     Epoch   3 | Train Loss: 1.1149 | Val Loss: 1.0699 | UA: 0.6377 | WA: 0.5862 ★
+2026-06-14 21:05:14,378 |     Epoch   4 | Train Loss: 1.0756 | Val Loss: 1.0456 | UA: 0.6420 | WA: 0.5954 ★
+2026-06-14 21:05:17,932 |     Epoch   6 | Train Loss: 1.0244 | Val Loss: 1.0302 | UA: 0.6543 | WA: 0.6129 ★
+2026-06-14 21:05:19,654 |     Epoch   7 | Train Loss: 1.0092 | Val Loss: 1.0207 | UA: 0.6438 | WA: 0.6092 ★
+2026-06-14 21:05:24,671 |     Epoch  10 | Train Loss: 0.9636 | Val Loss: 1.0224 | UA: 0.6424 | WA: 0.6092
+2026-06-14 21:05:26,457 |     Epoch  11 | Train Loss: 0.9536 | Val Loss: 1.0127 | UA: 0.6465 | WA: 0.6120 ★
+2026-06-14 21:05:37,635 |     Epoch  20 | Train Loss: 0.8666 | Val Loss: 1.0168 | UA: 0.6466 | WA: 0.6175
+2026-06-14 21:05:46,695 |     Early stopping at epoch 26 (patience=15)
+2026-06-14 21:05:46,821 |   [OK] Best model: Epoch 11 | UA: 0.6465 | WA: 0.6120
+2026-06-14 21:05:46,846 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:05:46,847 |   Model type: baseline
+2026-06-14 21:05:46,847 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:05:46,847 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:05:46,847 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:05:46,847 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:05:46,848 |   AMP: True
+2026-06-14 21:05:46,849 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:05:48,382 |     Epoch   1 | Train Loss: 1.3303 | Val Loss: 1.1862 | UA: 0.4932 | WA: 0.4544 ★
+2026-06-14 21:05:50,077 |     Epoch   2 | Train Loss: 1.1871 | Val Loss: 1.1179 | UA: 0.5801 | WA: 0.5392 ★
+2026-06-14 21:05:51,644 |     Epoch   3 | Train Loss: 1.1317 | Val Loss: 1.0933 | UA: 0.6070 | WA: 0.5613 ★
+2026-06-14 21:05:53,396 |     Epoch   4 | Train Loss: 1.0892 | Val Loss: 1.0785 | UA: 0.6198 | WA: 0.5677 ★
+2026-06-14 21:05:55,357 |     Epoch   5 | Train Loss: 1.0549 | Val Loss: 1.0693 | UA: 0.6246 | WA: 0.5760 ★
+2026-06-14 21:05:59,096 |     Epoch   7 | Train Loss: 1.0156 | Val Loss: 1.0618 | UA: 0.6408 | WA: 0.5908 ★
+2026-06-14 21:06:02,886 |     Epoch   9 | Train Loss: 0.9811 | Val Loss: 1.0583 | UA: 0.6423 | WA: 0.5945 ★
+2026-06-14 21:06:04,555 |     Epoch  10 | Train Loss: 0.9780 | Val Loss: 1.0412 | UA: 0.6459 | WA: 0.6055 ★
+2026-06-14 21:06:06,303 |     Epoch  11 | Train Loss: 0.9627 | Val Loss: 1.0302 | UA: 0.6489 | WA: 0.6074 ★
+2026-06-14 21:06:23,423 |     Epoch  20 | Train Loss: 0.8844 | Val Loss: 1.0434 | UA: 0.6551 | WA: 0.6157
+2026-06-14 21:06:34,842 |     Early stopping at epoch 26 (patience=15)
+2026-06-14 21:06:34,997 |   [OK] Best model: Epoch 11 | UA: 0.6489 | WA: 0.6074
+2026-06-14 21:06:35,036 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:06:35,037 |   Model type: baseline
+2026-06-14 21:06:35,037 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:06:35,037 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:06:35,037 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:06:35,037 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:06:35,037 |   AMP: True
+2026-06-14 21:06:35,039 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:06:36,921 |     Epoch   1 | Train Loss: 1.2983 | Val Loss: 1.1616 | UA: 0.5630 | WA: 0.5253 ★
+2026-06-14 21:06:38,827 |     Epoch   2 | Train Loss: 1.1850 | Val Loss: 1.1275 | UA: 0.5680 | WA: 0.5207 ★
+2026-06-14 21:06:40,483 |     Epoch   3 | Train Loss: 1.1186 | Val Loss: 1.0782 | UA: 0.6243 | WA: 0.5760 ★
+2026-06-14 21:06:47,260 |     Epoch   7 | Train Loss: 1.0028 | Val Loss: 1.0657 | UA: 0.6456 | WA: 0.5991 ★
+2026-06-14 21:06:52,576 |     Epoch  10 | Train Loss: 0.9617 | Val Loss: 1.0391 | UA: 0.6731 | WA: 0.6295 ★
+2026-06-14 21:07:09,438 |     Epoch  20 | Train Loss: 0.8708 | Val Loss: 1.0714 | UA: 0.6655 | WA: 0.6221
+2026-06-14 21:07:17,718 |     Early stopping at epoch 25 (patience=15)
+2026-06-14 21:07:17,834 |   [OK] Best model: Epoch 10 | UA: 0.6731 | WA: 0.6295
+2026-06-14 21:07:17,835 |   [BASELINE    ] Fold 1 -- UA: 0.6562+/-0.0120 | WA: 0.6163+/-0.0095
+2026-06-14 21:07:17,867 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:07:17,868 |   Model type: contrastive
+2026-06-14 21:07:17,868 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:07:17,868 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:07:17,868 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:07:17,868 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:07:17,868 |   AMP: True
+2026-06-14 21:07:17,869 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:07:18,736 |     Epoch   1 | Train Loss: 0.9850 | Val Loss: 1.0649 | UA: 0.6294 | WA: 0.6000 ★
+2026-06-14 21:07:29,335 |     Epoch  10 | Train Loss: 0.3539 | Val Loss: 1.4549 | UA: 0.5882 | WA: 0.5871
+2026-06-14 21:07:38,995 |     Early stopping at epoch 16 (patience=15)
+2026-06-14 21:07:39,163 |   [OK] Best model: Epoch 1 | UA: 0.6294 | WA: 0.6000
+2026-06-14 21:07:39,214 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:07:39,216 |   Model type: contrastive
+2026-06-14 21:07:39,218 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:07:39,218 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:07:39,218 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:07:39,218 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:07:39,218 |   AMP: True
+2026-06-14 21:07:39,220 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:07:40,889 |     Epoch   1 | Train Loss: 0.9762 | Val Loss: 1.0670 | UA: 0.6179 | WA: 0.5889 ★
+2026-06-14 21:07:56,998 |     Epoch  10 | Train Loss: 0.3539 | Val Loss: 1.4929 | UA: 0.5850 | WA: 0.5862
+2026-06-14 21:08:07,390 |     Early stopping at epoch 16 (patience=15)
+2026-06-14 21:08:07,535 |   [OK] Best model: Epoch 1 | UA: 0.6179 | WA: 0.5889
+2026-06-14 21:08:07,567 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:08:07,568 |   Model type: contrastive
+2026-06-14 21:08:07,568 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:08:07,568 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:08:07,568 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:08:07,568 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:08:07,568 |   AMP: True
+2026-06-14 21:08:07,570 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:08:09,217 |     Epoch   1 | Train Loss: 1.0964 | Val Loss: 1.0544 | UA: 0.6239 | WA: 0.6101 ★
+2026-06-14 21:08:24,975 |     Epoch  10 | Train Loss: 0.3538 | Val Loss: 1.4654 | UA: 0.5996 | WA: 0.5908
+2026-06-14 21:08:35,842 |     Early stopping at epoch 16 (patience=15)
+2026-06-14 21:08:35,985 |   [OK] Best model: Epoch 1 | UA: 0.6239 | WA: 0.6101
+2026-06-14 21:08:35,985 |   [CONTRASTIVE ] Fold 1 -- UA: 0.6237+/-0.0047 | WA: 0.5997+/-0.0087
+2026-06-14 21:08:35,998 | --- FOLD 2/5: Test Session 2 (train=4506, test=1023) ---
+2026-06-14 21:08:36,006 |   [Stage1-Fold] Training SupCon excluding session 2 (4506 train, 1023 held-out)
+2026-06-14 21:08:39,132 |   [Stage1-Fold] Epoch 1/50 Loss: 5.0110 (best: 5.0110)
+2026-06-14 21:09:03,996 |   [Stage1-Fold] Epoch 10/50 Loss: 4.2989 (best: 4.2989)
+2026-06-14 21:09:25,873 |   [Stage1-Fold] Epoch 20/50 Loss: 3.7791 (best: 3.7791)
+2026-06-14 21:09:34,356 |   [Stage1-Fold] Epoch 30/50 Loss: 3.5903 (best: 3.5903)
+2026-06-14 21:10:02,014 |   [Stage1-Fold] Epoch 40/50 Loss: 3.5229 (best: 3.5229)
+2026-06-14 21:10:29,763 |   [Stage1-Fold] Epoch 50/50 Loss: 3.5104 (best: 3.5087)
+2026-06-14 21:10:29,763 |   [Stage1-Fold] Done. Best loss: 3.5087
+2026-06-14 21:10:29,813 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:10:29,814 |   Model type: baseline
+2026-06-14 21:10:29,814 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:10:29,814 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:10:29,814 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:10:29,815 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:10:29,815 |   AMP: True
+2026-06-14 21:10:29,817 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:10:31,533 |     Epoch   1 | Train Loss: 1.2771 | Val Loss: 1.2027 | UA: 0.4831 | WA: 0.4839 ★
+2026-06-14 21:10:33,698 |     Epoch   2 | Train Loss: 1.1644 | Val Loss: 1.1542 | UA: 0.4943 | WA: 0.5064 ★
+2026-06-14 21:10:35,463 |     Epoch   3 | Train Loss: 1.1032 | Val Loss: 1.0983 | UA: 0.5599 | WA: 0.5435 ★
+2026-06-14 21:10:37,077 |     Epoch   4 | Train Loss: 1.0694 | Val Loss: 1.0820 | UA: 0.5818 | WA: 0.5562 ★
+2026-06-14 21:10:38,714 |     Epoch   5 | Train Loss: 1.0410 | Val Loss: 1.0669 | UA: 0.6052 | WA: 0.5855 ★
+2026-06-14 21:10:40,393 |     Epoch   6 | Train Loss: 1.0297 | Val Loss: 1.0445 | UA: 0.5977 | WA: 0.5816 ★
+2026-06-14 21:10:42,010 |     Epoch   7 | Train Loss: 1.0089 | Val Loss: 1.0316 | UA: 0.6236 | WA: 0.6041 ★
+2026-06-14 21:10:43,525 |     Epoch   8 | Train Loss: 0.9903 | Val Loss: 1.0295 | UA: 0.6077 | WA: 0.5963 ★
+2026-06-14 21:10:46,327 |     Epoch  10 | Train Loss: 0.9697 | Val Loss: 1.0175 | UA: 0.6340 | WA: 0.6197 ★
+2026-06-14 21:10:47,270 |     Epoch  11 | Train Loss: 0.9603 | Val Loss: 1.0169 | UA: 0.6476 | WA: 0.6266 ★
+2026-06-14 21:10:48,136 |     Epoch  12 | Train Loss: 0.9483 | Val Loss: 1.0028 | UA: 0.6419 | WA: 0.6285 ★
+2026-06-14 21:10:51,216 |     Epoch  16 | Train Loss: 0.9114 | Val Loss: 0.9971 | UA: 0.6555 | WA: 0.6393 ★
+2026-06-14 21:10:52,344 |     Epoch  18 | Train Loss: 0.8836 | Val Loss: 0.9929 | UA: 0.6606 | WA: 0.6393 ★
+2026-06-14 21:10:53,661 |     Epoch  20 | Train Loss: 0.8779 | Val Loss: 0.9832 | UA: 0.6663 | WA: 0.6491 ★
+2026-06-14 21:10:59,305 |     Epoch  30 | Train Loss: 0.8116 | Val Loss: 1.0319 | UA: 0.6571 | WA: 0.6354
+2026-06-14 21:11:02,218 |     Early stopping at epoch 35 (patience=15)
+2026-06-14 21:11:02,274 |   [OK] Best model: Epoch 20 | UA: 0.6663 | WA: 0.6491
+2026-06-14 21:11:02,285 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:11:02,286 |   Model type: baseline
+2026-06-14 21:11:02,286 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:11:02,286 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:11:02,286 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:11:02,286 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:11:02,286 |   AMP: True
+2026-06-14 21:11:02,286 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:11:02,893 |     Epoch   1 | Train Loss: 1.3187 | Val Loss: 1.2142 | UA: 0.4962 | WA: 0.4868 ★
+2026-06-14 21:11:03,600 |     Epoch   2 | Train Loss: 1.1716 | Val Loss: 1.1702 | UA: 0.5411 | WA: 0.5220 ★
+2026-06-14 21:11:04,146 |     Epoch   3 | Train Loss: 1.1110 | Val Loss: 1.1171 | UA: 0.5794 | WA: 0.5513 ★
+2026-06-14 21:11:05,241 |     Epoch   5 | Train Loss: 1.0546 | Val Loss: 1.0970 | UA: 0.5947 | WA: 0.5572 ★
+2026-06-14 21:11:05,791 |     Epoch   6 | Train Loss: 1.0323 | Val Loss: 1.0684 | UA: 0.5996 | WA: 0.5748 ★
+2026-06-14 21:11:06,372 |     Epoch   7 | Train Loss: 1.0128 | Val Loss: 1.0530 | UA: 0.5991 | WA: 0.5797 ★
+2026-06-14 21:11:08,444 |     Epoch  10 | Train Loss: 0.9726 | Val Loss: 1.0568 | UA: 0.6065 | WA: 0.5904
+2026-06-14 21:11:09,267 |     Epoch  11 | Train Loss: 0.9662 | Val Loss: 1.0528 | UA: 0.6271 | WA: 0.5934 ★
+2026-06-14 21:11:15,073 |     Epoch  20 | Train Loss: 0.8856 | Val Loss: 1.0725 | UA: 0.6254 | WA: 0.5904
+2026-06-14 21:11:19,357 |     Early stopping at epoch 26 (patience=15)
+2026-06-14 21:11:19,399 |   [OK] Best model: Epoch 11 | UA: 0.6271 | WA: 0.5934
+2026-06-14 21:11:19,416 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:11:19,416 |   Model type: baseline
+2026-06-14 21:11:19,416 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:11:19,416 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:11:19,416 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:11:19,416 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:11:19,416 |   AMP: True
+2026-06-14 21:11:19,416 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:11:19,996 |     Epoch   1 | Train Loss: 1.2972 | Val Loss: 1.2297 | UA: 0.4392 | WA: 0.4370 ★
+2026-06-14 21:11:20,579 |     Epoch   2 | Train Loss: 1.1647 | Val Loss: 1.1732 | UA: 0.4985 | WA: 0.4936 ★
+2026-06-14 21:11:21,170 |     Epoch   3 | Train Loss: 1.1176 | Val Loss: 1.0947 | UA: 0.5741 | WA: 0.5679 ★
+2026-06-14 21:11:21,698 |     Epoch   4 | Train Loss: 1.0716 | Val Loss: 1.0748 | UA: 0.5895 | WA: 0.5699 ★
+2026-06-14 21:11:22,218 |     Epoch   5 | Train Loss: 1.0406 | Val Loss: 1.0484 | UA: 0.5921 | WA: 0.5787 ★
+2026-06-14 21:11:22,732 |     Epoch   6 | Train Loss: 1.0250 | Val Loss: 1.0318 | UA: 0.6128 | WA: 0.5943 ★
+2026-06-14 21:11:23,259 |     Epoch   7 | Train Loss: 1.0091 | Val Loss: 1.0265 | UA: 0.6097 | WA: 0.5826 ★
+2026-06-14 21:11:23,774 |     Epoch   8 | Train Loss: 0.9907 | Val Loss: 1.0115 | UA: 0.6203 | WA: 0.5982 ★
+2026-06-14 21:11:25,052 |     Epoch  10 | Train Loss: 0.9619 | Val Loss: 1.0018 | UA: 0.6375 | WA: 0.6100 ★
+2026-06-14 21:11:26,191 |     Epoch  12 | Train Loss: 0.9368 | Val Loss: 1.0005 | UA: 0.6342 | WA: 0.6158 ★
+2026-06-14 21:11:26,731 |     Epoch  13 | Train Loss: 0.9333 | Val Loss: 0.9903 | UA: 0.6444 | WA: 0.6276 ★
+2026-06-14 21:11:30,759 |     Epoch  20 | Train Loss: 0.8722 | Val Loss: 1.0059 | UA: 0.6618 | WA: 0.6295
+2026-06-14 21:11:35,478 |     Early stopping at epoch 28 (patience=15)
+2026-06-14 21:11:35,528 |   [OK] Best model: Epoch 13 | UA: 0.6444 | WA: 0.6276
+2026-06-14 21:11:35,529 |   [BASELINE    ] Fold 2 -- UA: 0.6459+/-0.0160 | WA: 0.6233+/-0.0229
+2026-06-14 21:11:35,541 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:11:35,543 |   Model type: contrastive
+2026-06-14 21:11:35,543 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:11:35,543 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:11:35,543 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:11:35,543 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:11:35,543 |   AMP: True
+2026-06-14 21:11:35,543 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:11:36,106 |     Epoch   1 | Train Loss: 1.0575 | Val Loss: 1.0563 | UA: 0.6306 | WA: 0.6276 ★
+2026-06-14 21:11:41,398 |     Epoch  10 | Train Loss: 0.3563 | Val Loss: 1.3503 | UA: 0.6462 | WA: 0.6344
+2026-06-14 21:11:44,766 |     Early stopping at epoch 16 (patience=15)
+2026-06-14 21:11:44,837 |   [OK] Best model: Epoch 1 | UA: 0.6306 | WA: 0.6276
+2026-06-14 21:11:44,856 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:11:44,856 |   Model type: contrastive
+2026-06-14 21:11:44,856 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:11:44,856 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:11:44,856 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:11:44,856 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:11:44,856 |   AMP: True
+2026-06-14 21:11:44,857 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:11:45,701 |     Epoch   1 | Train Loss: 1.1111 | Val Loss: 1.0997 | UA: 0.5692 | WA: 0.5797 ★
+2026-06-14 21:11:51,746 |     Epoch  10 | Train Loss: 0.3571 | Val Loss: 1.3546 | UA: 0.6360 | WA: 0.6246
+2026-06-14 21:11:55,391 |     Early stopping at epoch 16 (patience=15)
+2026-06-14 21:11:55,447 |   [OK] Best model: Epoch 1 | UA: 0.5692 | WA: 0.5797
+2026-06-14 21:11:55,459 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:11:55,460 |   Model type: contrastive
+2026-06-14 21:11:55,460 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:11:55,460 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:11:55,460 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:11:55,460 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:11:55,460 |   AMP: True
+2026-06-14 21:11:55,460 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:11:56,058 |     Epoch   1 | Train Loss: 1.1362 | Val Loss: 1.0701 | UA: 0.6179 | WA: 0.5767 ★
+2026-06-14 21:11:56,654 |     Epoch   2 | Train Loss: 0.6707 | Val Loss: 1.0234 | UA: 0.6598 | WA: 0.6403 ★
+2026-06-14 21:12:01,842 |     Epoch  10 | Train Loss: 0.3566 | Val Loss: 1.3637 | UA: 0.6415 | WA: 0.6276
+2026-06-14 21:12:06,523 |     Early stopping at epoch 17 (patience=15)
+2026-06-14 21:12:06,578 |   [OK] Best model: Epoch 2 | UA: 0.6598 | WA: 0.6403
+2026-06-14 21:12:06,581 |   [CONTRASTIVE ] Fold 2 -- UA: 0.6199+/-0.0377 | WA: 0.6158+/-0.0261
+2026-06-14 21:12:06,587 | --- FOLD 3/5: Test Session 3 (train=4378, test=1151) ---
+2026-06-14 21:12:06,590 |   [Stage1-Fold] Training SupCon excluding session 3 (4378 train, 1151 held-out)
+2026-06-14 21:12:07,411 |   [Stage1-Fold] Epoch 1/50 Loss: 4.9639 (best: 4.9639)
+2026-06-14 21:12:14,612 |   [Stage1-Fold] Epoch 10/50 Loss: 4.3098 (best: 4.3098)
+2026-06-14 21:12:22,481 |   [Stage1-Fold] Epoch 20/50 Loss: 3.8124 (best: 3.8124)
+2026-06-14 21:12:30,140 |   [Stage1-Fold] Epoch 30/50 Loss: 3.6259 (best: 3.6259)
+2026-06-14 21:12:38,285 |   [Stage1-Fold] Epoch 40/50 Loss: 3.5483 (best: 3.5483)
+2026-06-14 21:12:46,635 |   [Stage1-Fold] Epoch 50/50 Loss: 3.5357 (best: 3.5315)
+2026-06-14 21:12:46,635 |   [Stage1-Fold] Done. Best loss: 3.5315
+2026-06-14 21:12:46,647 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:12:46,650 |   Model type: baseline
+2026-06-14 21:12:46,650 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:12:46,650 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:12:46,650 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:12:46,650 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:12:46,650 |   AMP: True
+2026-06-14 21:12:46,651 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:12:47,228 |     Epoch   1 | Train Loss: 1.2678 | Val Loss: 1.2173 | UA: 0.4466 | WA: 0.4579 ★
+2026-06-14 21:12:47,825 |     Epoch   2 | Train Loss: 1.1496 | Val Loss: 1.1680 | UA: 0.4922 | WA: 0.4996 ★
+2026-06-14 21:12:48,471 |     Epoch   3 | Train Loss: 1.0918 | Val Loss: 1.1462 | UA: 0.5135 | WA: 0.5135 ★
+2026-06-14 21:12:49,281 |     Epoch   4 | Train Loss: 1.0502 | Val Loss: 1.1368 | UA: 0.5245 | WA: 0.5265 ★
+2026-06-14 21:12:50,103 |     Epoch   5 | Train Loss: 1.0248 | Val Loss: 1.1363 | UA: 0.5354 | WA: 0.5413 ★
+2026-06-14 21:12:50,882 |     Epoch   6 | Train Loss: 1.0062 | Val Loss: 1.1332 | UA: 0.5501 | WA: 0.5526 ★
+2026-06-14 21:12:51,570 |     Epoch   7 | Train Loss: 0.9873 | Val Loss: 1.1201 | UA: 0.5482 | WA: 0.5500 ★
+2026-06-14 21:12:52,168 |     Epoch   8 | Train Loss: 0.9714 | Val Loss: 1.1083 | UA: 0.5651 | WA: 0.5682 ★
+2026-06-14 21:12:53,306 |     Epoch  10 | Train Loss: 0.9398 | Val Loss: 1.0969 | UA: 0.5774 | WA: 0.5795 ★
+2026-06-14 21:12:54,453 |     Epoch  12 | Train Loss: 0.9190 | Val Loss: 1.0883 | UA: 0.5809 | WA: 0.5821 ★
+2026-06-14 21:12:55,566 |     Epoch  14 | Train Loss: 0.9029 | Val Loss: 1.0873 | UA: 0.5851 | WA: 0.5882 ★
+2026-06-14 21:12:56,118 |     Epoch  15 | Train Loss: 0.8935 | Val Loss: 1.0832 | UA: 0.5916 | WA: 0.5943 ★
+2026-06-14 21:12:58,570 |     Epoch  19 | Train Loss: 0.8569 | Val Loss: 1.0821 | UA: 0.6110 | WA: 0.6125 ★
+2026-06-14 21:12:59,112 |     Epoch  20 | Train Loss: 0.8541 | Val Loss: 1.0971 | UA: 0.5991 | WA: 0.6021
+2026-06-14 21:13:04,954 |     Epoch  30 | Train Loss: 0.7886 | Val Loss: 1.0935 | UA: 0.6213 | WA: 0.6203
+2026-06-14 21:13:07,473 |     Early stopping at epoch 34 (patience=15)
+2026-06-14 21:13:07,521 |   [OK] Best model: Epoch 19 | UA: 0.6110 | WA: 0.6125
+2026-06-14 21:13:07,539 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:13:07,539 |   Model type: baseline
+2026-06-14 21:13:07,539 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:13:07,539 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:13:07,539 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:13:07,539 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:13:07,539 |   AMP: True
+2026-06-14 21:13:07,540 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:13:08,132 |     Epoch   1 | Train Loss: 1.3056 | Val Loss: 1.2305 | UA: 0.4281 | WA: 0.4457 ★
+2026-06-14 21:13:08,703 |     Epoch   2 | Train Loss: 1.1628 | Val Loss: 1.1745 | UA: 0.4798 | WA: 0.4900 ★
+2026-06-14 21:13:09,437 |     Epoch   3 | Train Loss: 1.1025 | Val Loss: 1.1479 | UA: 0.5160 | WA: 0.5222 ★
+2026-06-14 21:13:10,083 |     Epoch   4 | Train Loss: 1.0619 | Val Loss: 1.1362 | UA: 0.5325 | WA: 0.5361 ★
+2026-06-14 21:13:10,646 |     Epoch   5 | Train Loss: 1.0341 | Val Loss: 1.1273 | UA: 0.5353 | WA: 0.5378 ★
+2026-06-14 21:13:11,195 |     Epoch   6 | Train Loss: 1.0192 | Val Loss: 1.1180 | UA: 0.5550 | WA: 0.5560 ★
+2026-06-14 21:13:12,423 |     Epoch   8 | Train Loss: 0.9805 | Val Loss: 1.1049 | UA: 0.5721 | WA: 0.5725 ★
+2026-06-14 21:13:13,535 |     Epoch  10 | Train Loss: 0.9568 | Val Loss: 1.1025 | UA: 0.5573 | WA: 0.5613 ★
+2026-06-14 21:13:14,099 |     Epoch  11 | Train Loss: 0.9515 | Val Loss: 1.0952 | UA: 0.5738 | WA: 0.5760 ★
+2026-06-14 21:13:15,241 |     Epoch  13 | Train Loss: 0.9263 | Val Loss: 1.0944 | UA: 0.5686 | WA: 0.5725 ★
+2026-06-14 21:13:15,771 |     Epoch  14 | Train Loss: 0.9178 | Val Loss: 1.0858 | UA: 0.5934 | WA: 0.5925 ★
+2026-06-14 21:13:16,298 |     Epoch  15 | Train Loss: 0.9021 | Val Loss: 1.0843 | UA: 0.5864 | WA: 0.5873 ★
+2026-06-14 21:13:18,986 |     Epoch  20 | Train Loss: 0.8654 | Val Loss: 1.0994 | UA: 0.5905 | WA: 0.5934
+2026-06-14 21:13:25,548 |     Epoch  30 | Train Loss: 0.8055 | Val Loss: 1.1096 | UA: 0.6068 | WA: 0.6064
+2026-06-14 21:13:25,548 |     Early stopping at epoch 30 (patience=15)
+2026-06-14 21:13:25,597 |   [OK] Best model: Epoch 15 | UA: 0.5864 | WA: 0.5873
+2026-06-14 21:13:25,615 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:13:25,615 |   Model type: baseline
+2026-06-14 21:13:25,615 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:13:25,615 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:13:25,615 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:13:25,615 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:13:25,615 |   AMP: True
+2026-06-14 21:13:25,616 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:13:26,241 |     Epoch   1 | Train Loss: 1.2957 | Val Loss: 1.2286 | UA: 0.4259 | WA: 0.4370 ★
+2026-06-14 21:13:26,833 |     Epoch   2 | Train Loss: 1.1658 | Val Loss: 1.1747 | UA: 0.4920 | WA: 0.4987 ★
+2026-06-14 21:13:27,559 |     Epoch   3 | Train Loss: 1.0919 | Val Loss: 1.1600 | UA: 0.5133 | WA: 0.5195 ★
+2026-06-14 21:13:28,236 |     Epoch   4 | Train Loss: 1.0562 | Val Loss: 1.1385 | UA: 0.5440 | WA: 0.5474 ★
+2026-06-14 21:13:28,820 |     Epoch   5 | Train Loss: 1.0237 | Val Loss: 1.1230 | UA: 0.5465 | WA: 0.5465 ★
+2026-06-14 21:13:30,067 |     Epoch   7 | Train Loss: 0.9890 | Val Loss: 1.1071 | UA: 0.5636 | WA: 0.5639 ★
+2026-06-14 21:13:30,882 |     Epoch   8 | Train Loss: 0.9717 | Val Loss: 1.1050 | UA: 0.5596 | WA: 0.5595 ★
+2026-06-14 21:13:31,598 |     Epoch   9 | Train Loss: 0.9608 | Val Loss: 1.1010 | UA: 0.5582 | WA: 0.5604 ★
+2026-06-14 21:13:32,173 |     Epoch  10 | Train Loss: 0.9447 | Val Loss: 1.0940 | UA: 0.5638 | WA: 0.5647 ★
+2026-06-14 21:13:32,820 |     Epoch  11 | Train Loss: 0.9333 | Val Loss: 1.0870 | UA: 0.5726 | WA: 0.5760 ★
+2026-06-14 21:13:33,458 |     Epoch  12 | Train Loss: 0.9282 | Val Loss: 1.0797 | UA: 0.5857 | WA: 0.5882 ★
+2026-06-14 21:13:34,048 |     Epoch  13 | Train Loss: 0.9139 | Val Loss: 1.0795 | UA: 0.5874 | WA: 0.5899 ★
+2026-06-14 21:13:34,646 |     Epoch  14 | Train Loss: 0.9035 | Val Loss: 1.0735 | UA: 0.5880 | WA: 0.5899 ★
+2026-06-14 21:13:35,898 |     Epoch  16 | Train Loss: 0.8916 | Val Loss: 1.0723 | UA: 0.5866 | WA: 0.5891 ★
+2026-06-14 21:13:36,548 |     Epoch  17 | Train Loss: 0.8808 | Val Loss: 1.0691 | UA: 0.5973 | WA: 0.6012 ★
+2026-06-14 21:13:37,323 |     Epoch  18 | Train Loss: 0.8752 | Val Loss: 1.0679 | UA: 0.5923 | WA: 0.5934 ★
+2026-06-14 21:13:39,671 |     Epoch  20 | Train Loss: 0.8581 | Val Loss: 1.0609 | UA: 0.6167 | WA: 0.6212 ★
+2026-06-14 21:13:43,044 |     Epoch  22 | Train Loss: 0.8442 | Val Loss: 1.0592 | UA: 0.6230 | WA: 0.6238 ★
+2026-06-14 21:13:55,829 |     Epoch  30 | Train Loss: 0.7913 | Val Loss: 1.0827 | UA: 0.6214 | WA: 0.6221
+2026-06-14 21:14:09,845 |     Early stopping at epoch 37 (patience=15)
+2026-06-14 21:14:10,010 |   [OK] Best model: Epoch 22 | UA: 0.6230 | WA: 0.6238
+2026-06-14 21:14:10,011 |   [BASELINE    ] Fold 3 -- UA: 0.6068+/-0.0152 | WA: 0.6079+/-0.0153
+2026-06-14 21:14:10,053 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:14:10,055 |   Model type: contrastive
+2026-06-14 21:14:10,055 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:14:10,055 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:14:10,056 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:14:10,056 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:14:10,056 |   AMP: True
+2026-06-14 21:14:10,056 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:14:11,716 |     Epoch   1 | Train Loss: 0.9426 | Val Loss: 1.1558 | UA: 0.5580 | WA: 0.5526 ★
+2026-06-14 21:14:28,941 |     Epoch  10 | Train Loss: 0.3572 | Val Loss: 1.5286 | UA: 0.5810 | WA: 0.5760
+2026-06-14 21:14:40,100 |     Early stopping at epoch 16 (patience=15)
+2026-06-14 21:14:40,251 |   [OK] Best model: Epoch 1 | UA: 0.5580 | WA: 0.5526
+2026-06-14 21:14:40,300 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:14:40,301 |   Model type: contrastive
+2026-06-14 21:14:40,301 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:14:40,301 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:14:40,301 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:14:40,301 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:14:40,301 |   AMP: True
+2026-06-14 21:14:40,302 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:14:41,922 |     Epoch   1 | Train Loss: 1.1406 | Val Loss: 1.1437 | UA: 0.5732 | WA: 0.5725 ★
+2026-06-14 21:14:58,516 |     Epoch  10 | Train Loss: 0.3571 | Val Loss: 1.5084 | UA: 0.5850 | WA: 0.5821
+2026-06-14 21:15:09,176 |     Early stopping at epoch 16 (patience=15)
+2026-06-14 21:15:09,335 |   [OK] Best model: Epoch 1 | UA: 0.5732 | WA: 0.5725
+2026-06-14 21:15:09,369 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:15:09,370 |   Model type: contrastive
+2026-06-14 21:15:09,371 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:15:09,371 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:15:09,371 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:15:09,371 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:15:09,372 |   AMP: True
+2026-06-14 21:15:09,375 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:15:11,020 |     Epoch   1 | Train Loss: 1.0626 | Val Loss: 1.1641 | UA: 0.5737 | WA: 0.5743 ★
+2026-06-14 21:15:27,745 |     Epoch  10 | Train Loss: 0.3572 | Val Loss: 1.5063 | UA: 0.5939 | WA: 0.5899
+2026-06-14 21:15:38,997 |     Early stopping at epoch 16 (patience=15)
+2026-06-14 21:15:39,161 |   [OK] Best model: Epoch 1 | UA: 0.5737 | WA: 0.5743
+2026-06-14 21:15:39,162 |   [CONTRASTIVE ] Fold 3 -- UA: 0.5683+/-0.0073 | WA: 0.5665+/-0.0099
+2026-06-14 21:15:39,179 | --- FOLD 4/5: Test Session 4 (train=4498, test=1031) ---
+2026-06-14 21:15:39,189 |   [Stage1-Fold] Training SupCon excluding session 4 (4498 train, 1031 held-out)
+2026-06-14 21:15:42,521 |   [Stage1-Fold] Epoch 1/50 Loss: 5.0061 (best: 5.0061)
+2026-06-14 21:16:09,635 |   [Stage1-Fold] Epoch 10/50 Loss: 4.3100 (best: 4.3100)
+2026-06-14 21:16:22,045 |   [Stage1-Fold] Epoch 20/50 Loss: 3.7845 (best: 3.7845)
+2026-06-14 21:16:30,745 |   [Stage1-Fold] Epoch 30/50 Loss: 3.5981 (best: 3.5981)
+2026-06-14 21:16:40,567 |   [Stage1-Fold] Epoch 40/50 Loss: 3.5373 (best: 3.5225)
+2026-06-14 21:16:50,780 |   [Stage1-Fold] Epoch 50/50 Loss: 3.5164 (best: 3.5143)
+2026-06-14 21:16:50,782 |   [Stage1-Fold] Done. Best loss: 3.5143
+2026-06-14 21:16:50,799 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:16:50,799 |   Model type: baseline
+2026-06-14 21:16:50,799 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:16:50,799 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:16:50,799 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:16:50,799 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:16:50,799 |   AMP: True
+2026-06-14 21:16:50,800 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:16:51,471 |     Epoch   1 | Train Loss: 1.2849 | Val Loss: 1.2361 | UA: 0.4541 | WA: 0.4433 ★
+2026-06-14 21:16:52,310 |     Epoch   2 | Train Loss: 1.1640 | Val Loss: 1.1408 | UA: 0.5503 | WA: 0.5373 ★
+2026-06-14 21:16:53,115 |     Epoch   3 | Train Loss: 1.1064 | Val Loss: 1.0957 | UA: 0.5725 | WA: 0.5752 ★
+2026-06-14 21:16:53,812 |     Epoch   4 | Train Loss: 1.0688 | Val Loss: 1.0761 | UA: 0.5913 | WA: 0.5907 ★
+2026-06-14 21:16:54,525 |     Epoch   5 | Train Loss: 1.0406 | Val Loss: 1.0640 | UA: 0.6028 | WA: 0.5994 ★
+2026-06-14 21:16:55,139 |     Epoch   6 | Train Loss: 1.0222 | Val Loss: 1.0556 | UA: 0.6012 | WA: 0.6023 ★
+2026-06-14 21:16:56,675 |     Epoch   8 | Train Loss: 0.9869 | Val Loss: 1.0348 | UA: 0.6065 | WA: 0.6120 ★
+2026-06-14 21:16:57,889 |     Epoch   9 | Train Loss: 0.9794 | Val Loss: 1.0286 | UA: 0.6120 | WA: 0.6149 ★
+2026-06-14 21:16:59,819 |     Epoch  10 | Train Loss: 0.9628 | Val Loss: 1.0286 | UA: 0.6007 | WA: 0.6130 ★
+2026-06-14 21:17:01,562 |     Epoch  11 | Train Loss: 0.9560 | Val Loss: 1.0123 | UA: 0.6274 | WA: 0.6305 ★
+2026-06-14 21:17:03,201 |     Epoch  12 | Train Loss: 0.9428 | Val Loss: 1.0085 | UA: 0.6316 | WA: 0.6314 ★
+2026-06-14 21:17:06,462 |     Epoch  14 | Train Loss: 0.9256 | Val Loss: 1.0079 | UA: 0.6101 | WA: 0.6198 ★
+2026-06-14 21:17:07,999 |     Epoch  15 | Train Loss: 0.9182 | Val Loss: 1.0056 | UA: 0.6281 | WA: 0.6275 ★
+2026-06-14 21:17:09,608 |     Epoch  16 | Train Loss: 0.9033 | Val Loss: 0.9995 | UA: 0.6292 | WA: 0.6363 ★
+2026-06-14 21:17:14,759 |     Epoch  19 | Train Loss: 0.8870 | Val Loss: 0.9992 | UA: 0.6261 | WA: 0.6343 ★
+2026-06-14 21:17:16,708 |     Epoch  20 | Train Loss: 0.8746 | Val Loss: 0.9958 | UA: 0.6394 | WA: 0.6431 ★
+2026-06-14 21:17:20,309 |     Epoch  22 | Train Loss: 0.8575 | Val Loss: 0.9934 | UA: 0.6420 | WA: 0.6421 ★
+2026-06-14 21:17:34,930 |     Epoch  30 | Train Loss: 0.8060 | Val Loss: 1.0007 | UA: 0.6271 | WA: 0.6314
+2026-06-14 21:17:47,975 |     Early stopping at epoch 37 (patience=15)
+2026-06-14 21:17:48,178 |   [OK] Best model: Epoch 22 | UA: 0.6420 | WA: 0.6421
+2026-06-14 21:17:48,210 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:17:48,211 |   Model type: baseline
+2026-06-14 21:17:48,211 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:17:48,211 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:17:48,212 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:17:48,212 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:17:48,212 |   AMP: True
+2026-06-14 21:17:48,212 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:17:50,026 |     Epoch   1 | Train Loss: 1.3105 | Val Loss: 1.2326 | UA: 0.4588 | WA: 0.4219 ★
+2026-06-14 21:17:51,746 |     Epoch   2 | Train Loss: 1.1728 | Val Loss: 1.1446 | UA: 0.5375 | WA: 0.5247 ★
+2026-06-14 21:17:53,461 |     Epoch   3 | Train Loss: 1.1143 | Val Loss: 1.1207 | UA: 0.5448 | WA: 0.5451 ★
+2026-06-14 21:17:55,570 |     Epoch   4 | Train Loss: 1.0785 | Val Loss: 1.0902 | UA: 0.5744 | WA: 0.5713 ★
+2026-06-14 21:17:57,384 |     Epoch   5 | Train Loss: 1.0514 | Val Loss: 1.0704 | UA: 0.5812 | WA: 0.5829 ★
+2026-06-14 21:17:59,359 |     Epoch   6 | Train Loss: 1.0380 | Val Loss: 1.0502 | UA: 0.5940 | WA: 0.5907 ★
+2026-06-14 21:18:01,388 |     Epoch   7 | Train Loss: 1.0154 | Val Loss: 1.0455 | UA: 0.5957 | WA: 0.6023 ★
+2026-06-14 21:18:03,030 |     Epoch   8 | Train Loss: 1.0023 | Val Loss: 1.0384 | UA: 0.5938 | WA: 0.6052 ★
+2026-06-14 21:18:05,004 |     Epoch   9 | Train Loss: 0.9836 | Val Loss: 1.0335 | UA: 0.5964 | WA: 0.6062 ★
+2026-06-14 21:18:06,984 |     Epoch  10 | Train Loss: 0.9693 | Val Loss: 1.0211 | UA: 0.6097 | WA: 0.6111 ★
+2026-06-14 21:18:08,594 |     Epoch  11 | Train Loss: 0.9698 | Val Loss: 1.0174 | UA: 0.6154 | WA: 0.6178 ★
+2026-06-14 21:18:10,307 |     Epoch  12 | Train Loss: 0.9497 | Val Loss: 1.0155 | UA: 0.6182 | WA: 0.6246 ★
+2026-06-14 21:18:11,971 |     Epoch  13 | Train Loss: 0.9513 | Val Loss: 1.0139 | UA: 0.6149 | WA: 0.6159 ★
+2026-06-14 21:18:13,893 |     Epoch  14 | Train Loss: 0.9332 | Val Loss: 1.0120 | UA: 0.6169 | WA: 0.6188 ★
+2026-06-14 21:18:17,279 |     Epoch  16 | Train Loss: 0.9213 | Val Loss: 1.0049 | UA: 0.6227 | WA: 0.6237 ★
+2026-06-14 21:18:20,550 |     Epoch  18 | Train Loss: 0.9005 | Val Loss: 1.0003 | UA: 0.6073 | WA: 0.6149 ★
+2026-06-14 21:18:23,683 |     Epoch  20 | Train Loss: 0.8967 | Val Loss: 1.0000 | UA: 0.6413 | WA: 0.6402 ★
+2026-06-14 21:18:25,473 |     Epoch  22 | Train Loss: 0.8793 | Val Loss: 0.9969 | UA: 0.6220 | WA: 0.6285 ★
+2026-06-14 21:18:31,066 |     Epoch  30 | Train Loss: 0.8274 | Val Loss: 1.0070 | UA: 0.6333 | WA: 0.6402
+2026-06-14 21:18:35,555 |     Early stopping at epoch 37 (patience=15)
+2026-06-14 21:18:35,605 |   [OK] Best model: Epoch 22 | UA: 0.6220 | WA: 0.6285
+2026-06-14 21:18:35,618 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:18:35,618 |   Model type: baseline
+2026-06-14 21:18:35,618 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:18:35,618 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:18:35,618 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:18:35,618 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:18:35,618 |   AMP: True
+2026-06-14 21:18:35,618 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:18:36,350 |     Epoch   1 | Train Loss: 1.2941 | Val Loss: 1.2225 | UA: 0.4988 | WA: 0.4694 ★
+2026-06-14 21:18:36,993 |     Epoch   2 | Train Loss: 1.1711 | Val Loss: 1.1644 | UA: 0.5413 | WA: 0.5228 ★
+2026-06-14 21:18:37,576 |     Epoch   3 | Train Loss: 1.1175 | Val Loss: 1.1040 | UA: 0.5962 | WA: 0.5800 ★
+2026-06-14 21:18:38,149 |     Epoch   4 | Train Loss: 1.0743 | Val Loss: 1.0791 | UA: 0.5932 | WA: 0.5897 ★
+2026-06-14 21:18:38,786 |     Epoch   5 | Train Loss: 1.0502 | Val Loss: 1.0653 | UA: 0.6119 | WA: 0.6033 ★
+2026-06-14 21:18:39,548 |     Epoch   6 | Train Loss: 1.0208 | Val Loss: 1.0553 | UA: 0.6095 | WA: 0.6081 ★
+2026-06-14 21:18:40,229 |     Epoch   7 | Train Loss: 1.0080 | Val Loss: 1.0476 | UA: 0.6080 | WA: 0.6130 ★
+2026-06-14 21:18:40,847 |     Epoch   8 | Train Loss: 0.9887 | Val Loss: 1.0443 | UA: 0.6124 | WA: 0.6178 ★
+2026-06-14 21:18:41,455 |     Epoch   9 | Train Loss: 0.9747 | Val Loss: 1.0407 | UA: 0.6207 | WA: 0.6237 ★
+2026-06-14 21:18:42,181 |     Epoch  10 | Train Loss: 0.9640 | Val Loss: 1.0299 | UA: 0.6156 | WA: 0.6246 ★
+2026-06-14 21:18:42,972 |     Epoch  11 | Train Loss: 0.9488 | Val Loss: 1.0294 | UA: 0.6145 | WA: 0.6266 ★
+2026-06-14 21:18:43,667 |     Epoch  12 | Train Loss: 0.9376 | Val Loss: 1.0255 | UA: 0.6379 | WA: 0.6421 ★
+2026-06-14 21:18:44,979 |     Epoch  14 | Train Loss: 0.9162 | Val Loss: 1.0215 | UA: 0.6319 | WA: 0.6382 ★
+2026-06-14 21:18:45,617 |     Epoch  15 | Train Loss: 0.9086 | Val Loss: 1.0170 | UA: 0.6404 | WA: 0.6402 ★
+2026-06-14 21:18:48,583 |     Epoch  20 | Train Loss: 0.8787 | Val Loss: 1.0253 | UA: 0.6162 | WA: 0.6266
+2026-06-14 21:18:54,356 |     Epoch  30 | Train Loss: 0.8115 | Val Loss: 1.0421 | UA: 0.6365 | WA: 0.6411
+2026-06-14 21:18:54,356 |     Early stopping at epoch 30 (patience=15)
+2026-06-14 21:18:54,406 |   [OK] Best model: Epoch 15 | UA: 0.6404 | WA: 0.6402
+2026-06-14 21:18:54,407 |   [BASELINE    ] Fold 4 -- UA: 0.6348+/-0.0091 | WA: 0.6369+/-0.0060
+2026-06-14 21:18:54,419 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:18:54,421 |   Model type: contrastive
+2026-06-14 21:18:54,421 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:18:54,421 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:18:54,421 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:18:54,421 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:18:54,421 |   AMP: True
+2026-06-14 21:18:54,421 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:18:54,972 |     Epoch   1 | Train Loss: 1.1751 | Val Loss: 1.1353 | UA: 0.5791 | WA: 0.5946 ★
+2026-06-14 21:18:55,617 |     Epoch   2 | Train Loss: 0.6399 | Val Loss: 1.0811 | UA: 0.6185 | WA: 0.6159 ★
+2026-06-14 21:19:00,551 |     Epoch  10 | Train Loss: 0.3560 | Val Loss: 1.3643 | UA: 0.6197 | WA: 0.6198
+2026-06-14 21:19:05,223 |     Early stopping at epoch 17 (patience=15)
+2026-06-14 21:19:05,277 |   [OK] Best model: Epoch 2 | UA: 0.6185 | WA: 0.6159
+2026-06-14 21:19:05,291 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:19:05,291 |   Model type: contrastive
+2026-06-14 21:19:05,291 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:19:05,291 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:19:05,291 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:19:05,291 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:19:05,291 |   AMP: True
+2026-06-14 21:19:05,291 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:19:05,853 |     Epoch   1 | Train Loss: 1.1073 | Val Loss: 1.1390 | UA: 0.5731 | WA: 0.5781 ★
+2026-06-14 21:19:06,444 |     Epoch   2 | Train Loss: 0.6057 | Val Loss: 1.1111 | UA: 0.6042 | WA: 0.6072 ★
+2026-06-14 21:19:11,242 |     Epoch  10 | Train Loss: 0.3574 | Val Loss: 1.3667 | UA: 0.6162 | WA: 0.6159
+2026-06-14 21:19:15,319 |     Early stopping at epoch 17 (patience=15)
+2026-06-14 21:19:15,369 |   [OK] Best model: Epoch 2 | UA: 0.6042 | WA: 0.6072
+2026-06-14 21:19:15,383 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:19:15,384 |   Model type: contrastive
+2026-06-14 21:19:15,384 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:19:15,384 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:19:15,384 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:19:15,384 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:19:15,384 |   AMP: True
+2026-06-14 21:19:15,385 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:19:15,959 |     Epoch   1 | Train Loss: 1.1709 | Val Loss: 1.0785 | UA: 0.6179 | WA: 0.6111 ★
+2026-06-14 21:19:16,610 |     Epoch   2 | Train Loss: 0.6468 | Val Loss: 1.0517 | UA: 0.6201 | WA: 0.6188 ★
+2026-06-14 21:19:22,117 |     Epoch  10 | Train Loss: 0.3559 | Val Loss: 1.3863 | UA: 0.6219 | WA: 0.6208
+2026-06-14 21:19:26,652 |     Early stopping at epoch 17 (patience=15)
+2026-06-14 21:19:26,694 |   [OK] Best model: Epoch 2 | UA: 0.6201 | WA: 0.6188
+2026-06-14 21:19:26,696 |   [CONTRASTIVE ] Fold 4 -- UA: 0.6143+/-0.0072 | WA: 0.6140+/-0.0049
+2026-06-14 21:19:26,702 | --- FOLD 5/5: Test Session 5 (train=4290, test=1239) ---
+2026-06-14 21:19:26,705 |   [Stage1-Fold] Training SupCon excluding session 5 (4290 train, 1239 held-out)
+2026-06-14 21:19:27,512 |   [Stage1-Fold] Epoch 1/50 Loss: 4.9169 (best: 4.9169)
+2026-06-14 21:19:34,477 |   [Stage1-Fold] Epoch 10/50 Loss: 4.3160 (best: 4.3160)
+2026-06-14 21:19:42,151 |   [Stage1-Fold] Epoch 20/50 Loss: 3.8123 (best: 3.8123)
+2026-06-14 21:19:49,743 |   [Stage1-Fold] Epoch 30/50 Loss: 3.5923 (best: 3.5923)
+2026-06-14 21:19:57,366 |   [Stage1-Fold] Epoch 40/50 Loss: 3.5241 (best: 3.5241)
+2026-06-14 21:20:05,442 |   [Stage1-Fold] Epoch 50/50 Loss: 3.5055 (best: 3.4901)
+2026-06-14 21:20:05,442 |   [Stage1-Fold] Done. Best loss: 3.4901
+2026-06-14 21:20:05,459 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:20:05,460 |   Model type: baseline
+2026-06-14 21:20:05,460 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:20:05,460 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:20:05,460 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:20:05,460 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:20:05,460 |   AMP: True
+2026-06-14 21:20:05,460 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:20:06,123 |     Epoch   1 | Train Loss: 1.2794 | Val Loss: 1.2031 | UA: 0.4900 | WA: 0.4948 ★
+2026-06-14 21:20:06,782 |     Epoch   2 | Train Loss: 1.1637 | Val Loss: 1.1310 | UA: 0.5456 | WA: 0.5496 ★
+2026-06-14 21:20:07,532 |     Epoch   3 | Train Loss: 1.1063 | Val Loss: 1.1020 | UA: 0.5702 | WA: 0.5561 ★
+2026-06-14 21:20:08,254 |     Epoch   4 | Train Loss: 1.0728 | Val Loss: 1.0680 | UA: 0.5770 | WA: 0.5827 ★
+2026-06-14 21:20:08,803 |     Epoch   5 | Train Loss: 1.0425 | Val Loss: 1.0598 | UA: 0.6030 | WA: 0.5811 ★
+2026-06-14 21:20:09,416 |     Epoch   6 | Train Loss: 1.0203 | Val Loss: 1.0517 | UA: 0.5962 | WA: 0.5779 ★
+2026-06-14 21:20:09,978 |     Epoch   7 | Train Loss: 1.0037 | Val Loss: 1.0479 | UA: 0.5990 | WA: 0.5779 ★
+2026-06-14 21:20:11,116 |     Epoch   9 | Train Loss: 0.9852 | Val Loss: 1.0369 | UA: 0.6070 | WA: 0.5860 ★
+2026-06-14 21:20:11,716 |     Epoch  10 | Train Loss: 0.9705 | Val Loss: 1.0407 | UA: 0.6118 | WA: 0.5916
+2026-06-14 21:20:12,921 |     Epoch  12 | Train Loss: 0.9469 | Val Loss: 1.0361 | UA: 0.6241 | WA: 0.5997 ★
+2026-06-14 21:20:13,442 |     Epoch  13 | Train Loss: 0.9401 | Val Loss: 1.0291 | UA: 0.6243 | WA: 0.6150 ★
+2026-06-14 21:20:15,643 |     Epoch  17 | Train Loss: 0.8883 | Val Loss: 1.0221 | UA: 0.6352 | WA: 0.6223 ★
+2026-06-14 21:20:17,435 |     Epoch  20 | Train Loss: 0.8659 | Val Loss: 1.0280 | UA: 0.6325 | WA: 0.6182
+2026-06-14 21:20:18,567 |     Epoch  22 | Train Loss: 0.8602 | Val Loss: 1.0212 | UA: 0.6412 | WA: 0.6312 ★
+2026-06-14 21:20:20,299 |     Epoch  25 | Train Loss: 0.8319 | Val Loss: 1.0165 | UA: 0.6439 | WA: 0.6352 ★
+2026-06-14 21:20:23,386 |     Epoch  30 | Train Loss: 0.8078 | Val Loss: 1.0373 | UA: 0.6431 | WA: 0.6344
+2026-06-14 21:20:28,943 |     Epoch  40 | Train Loss: 0.7523 | Val Loss: 1.0617 | UA: 0.6401 | WA: 0.6352
+2026-06-14 21:20:28,943 |     Early stopping at epoch 40 (patience=15)
+2026-06-14 21:20:28,991 |   [OK] Best model: Epoch 25 | UA: 0.6439 | WA: 0.6352
+2026-06-14 21:20:29,006 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:20:29,006 |   Model type: baseline
+2026-06-14 21:20:29,006 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:20:29,006 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:20:29,007 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:20:29,007 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:20:29,007 |   AMP: True
+2026-06-14 21:20:29,007 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:20:29,525 |     Epoch   1 | Train Loss: 1.3201 | Val Loss: 1.1682 | UA: 0.4852 | WA: 0.5319 ★
+2026-06-14 21:20:30,101 |     Epoch   2 | Train Loss: 1.1799 | Val Loss: 1.1097 | UA: 0.5691 | WA: 0.5706 ★
+2026-06-14 21:20:30,636 |     Epoch   3 | Train Loss: 1.1187 | Val Loss: 1.0677 | UA: 0.5839 | WA: 0.5787 ★
+2026-06-14 21:20:31,164 |     Epoch   4 | Train Loss: 1.0837 | Val Loss: 1.0445 | UA: 0.6141 | WA: 0.6037 ★
+2026-06-14 21:20:31,691 |     Epoch   5 | Train Loss: 1.0598 | Val Loss: 1.0441 | UA: 0.5911 | WA: 0.5868 ★
+2026-06-14 21:20:32,275 |     Epoch   6 | Train Loss: 1.0334 | Val Loss: 1.0336 | UA: 0.6032 | WA: 0.5948 ★
+2026-06-14 21:20:32,889 |     Epoch   7 | Train Loss: 1.0195 | Val Loss: 1.0221 | UA: 0.6112 | WA: 0.5997 ★
+2026-06-14 21:20:34,808 |     Epoch  10 | Train Loss: 0.9680 | Val Loss: 1.0089 | UA: 0.6265 | WA: 0.6239 ★
+2026-06-14 21:20:40,969 |     Epoch  20 | Train Loss: 0.8805 | Val Loss: 1.0215 | UA: 0.6386 | WA: 0.6263
+2026-06-14 21:20:43,691 |     Early stopping at epoch 25 (patience=15)
+2026-06-14 21:20:43,755 |   [OK] Best model: Epoch 10 | UA: 0.6265 | WA: 0.6239
+2026-06-14 21:20:43,767 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:20:43,767 |   Model type: baseline
+2026-06-14 21:20:43,767 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:20:43,767 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:20:43,767 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:20:43,767 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:20:43,767 |   AMP: True
+2026-06-14 21:20:43,768 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:20:44,406 |     Epoch   1 | Train Loss: 1.3077 | Val Loss: 1.1971 | UA: 0.4907 | WA: 0.4859 ★
+2026-06-14 21:20:45,156 |     Epoch   2 | Train Loss: 1.1743 | Val Loss: 1.1416 | UA: 0.5475 | WA: 0.5327 ★
+2026-06-14 21:20:45,906 |     Epoch   3 | Train Loss: 1.1156 | Val Loss: 1.0986 | UA: 0.5752 | WA: 0.5537 ★
+2026-06-14 21:20:46,462 |     Epoch   4 | Train Loss: 1.0740 | Val Loss: 1.0840 | UA: 0.5878 | WA: 0.5561 ★
+2026-06-14 21:20:47,053 |     Epoch   5 | Train Loss: 1.0360 | Val Loss: 1.0664 | UA: 0.6059 | WA: 0.5755 ★
+2026-06-14 21:20:47,761 |     Epoch   6 | Train Loss: 1.0188 | Val Loss: 1.0642 | UA: 0.6005 | WA: 0.5747 ★
+2026-06-14 21:20:48,573 |     Epoch   7 | Train Loss: 1.0118 | Val Loss: 1.0371 | UA: 0.6166 | WA: 0.5900 ★
+2026-06-14 21:20:50,041 |     Epoch   9 | Train Loss: 0.9768 | Val Loss: 1.0271 | UA: 0.6206 | WA: 0.6029 ★
+2026-06-14 21:20:50,635 |     Epoch  10 | Train Loss: 0.9613 | Val Loss: 1.0222 | UA: 0.6251 | WA: 0.6102 ★
+2026-06-14 21:20:51,261 |     Epoch  11 | Train Loss: 0.9588 | Val Loss: 1.0215 | UA: 0.6356 | WA: 0.6086 ★
+2026-06-14 21:20:53,371 |     Epoch  14 | Train Loss: 0.9269 | Val Loss: 1.0153 | UA: 0.6196 | WA: 0.6061 ★
+2026-06-14 21:20:54,010 |     Epoch  15 | Train Loss: 0.9133 | Val Loss: 1.0153 | UA: 0.6270 | WA: 0.6110 ★
+2026-06-14 21:20:54,601 |     Epoch  16 | Train Loss: 0.9144 | Val Loss: 1.0076 | UA: 0.6297 | WA: 0.6166 ★
+2026-06-14 21:20:55,166 |     Epoch  17 | Train Loss: 0.8840 | Val Loss: 1.0005 | UA: 0.6317 | WA: 0.6215 ★
+2026-06-14 21:20:55,824 |     Epoch  18 | Train Loss: 0.8939 | Val Loss: 0.9993 | UA: 0.6364 | WA: 0.6279 ★
+2026-06-14 21:20:57,122 |     Epoch  20 | Train Loss: 0.8687 | Val Loss: 1.0183 | UA: 0.6311 | WA: 0.6182
+2026-06-14 21:21:02,922 |     Epoch  30 | Train Loss: 0.8106 | Val Loss: 1.0178 | UA: 0.6465 | WA: 0.6336
+2026-06-14 21:21:04,621 |     Early stopping at epoch 33 (patience=15)
+2026-06-14 21:21:04,691 |   [OK] Best model: Epoch 18 | UA: 0.6364 | WA: 0.6279
+2026-06-14 21:21:04,694 |   [BASELINE    ] Fold 5 -- UA: 0.6356+/-0.0071 | WA: 0.6290+/-0.0047
+2026-06-14 21:21:04,706 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:21:04,708 |   Model type: contrastive
+2026-06-14 21:21:04,708 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:21:04,708 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:21:04,708 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:21:04,708 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:21:04,708 |   AMP: True
+2026-06-14 21:21:04,708 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:21:05,406 |     Epoch   1 | Train Loss: 1.0701 | Val Loss: 1.0666 | UA: 0.6090 | WA: 0.6174 ★
+2026-06-14 21:21:06,232 |     Epoch   2 | Train Loss: 0.6446 | Val Loss: 1.0658 | UA: 0.6335 | WA: 0.6295 ★
+2026-06-14 21:21:11,399 |     Epoch  10 | Train Loss: 0.3598 | Val Loss: 1.3987 | UA: 0.6218 | WA: 0.6118
+2026-06-14 21:21:15,364 |     Early stopping at epoch 17 (patience=15)
+2026-06-14 21:21:15,420 |   [OK] Best model: Epoch 2 | UA: 0.6335 | WA: 0.6295
+2026-06-14 21:21:15,436 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:21:15,439 |   Model type: contrastive
+2026-06-14 21:21:15,439 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:21:15,439 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:21:15,439 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:21:15,439 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:21:15,439 |   AMP: True
+2026-06-14 21:21:15,439 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:21:16,065 |     Epoch   1 | Train Loss: 0.9349 | Val Loss: 1.0484 | UA: 0.6221 | WA: 0.6086 ★
+2026-06-14 21:21:21,177 |     Epoch  10 | Train Loss: 0.3581 | Val Loss: 1.3877 | UA: 0.6273 | WA: 0.6118
+2026-06-14 21:21:24,809 |     Early stopping at epoch 16 (patience=15)
+2026-06-14 21:21:24,872 |   [OK] Best model: Epoch 1 | UA: 0.6221 | WA: 0.6086
+2026-06-14 21:21:24,888 |   [FT Phase] Unfreezing projection heads. Projection LR=1e-05, Classifier LR=0.0001
+2026-06-14 21:21:24,888 |   Model type: contrastive
+2026-06-14 21:21:24,888 |   Parameters: 992,004 total, 992,004 trainable
+2026-06-14 21:21:24,888 |   Optimizer: AdamW (lr=0.0001, wd=1e-05)
+2026-06-14 21:21:24,888 |   Scheduler: CosineAnnealing (T_max=100)
+2026-06-14 21:21:24,888 |   Loss: CrossEntropy (unweighted) with Joint Regularization (alpha=1.0)
+2026-06-14 21:21:24,888 |   AMP: True
+2026-06-14 21:21:24,889 |   Training for up to 100 epochs (patience=15)
+2026-06-14 21:21:25,592 |     Epoch   1 | Train Loss: 1.0737 | Val Loss: 1.1363 | UA: 0.5515 | WA: 0.5868 ★
+2026-06-14 21:21:30,516 |     Epoch  10 | Train Loss: 0.3601 | Val Loss: 1.3741 | UA: 0.6324 | WA: 0.6231
+2026-06-14 21:21:34,006 |     Early stopping at epoch 16 (patience=15)
+2026-06-14 21:21:34,059 |   [OK] Best model: Epoch 1 | UA: 0.5515 | WA: 0.5868
+2026-06-14 21:21:34,060 |   [CONTRASTIVE ] Fold 5 -- UA: 0.6024+/-0.0363 | WA: 0.6083+/-0.0175
+2026-06-14 21:21:34,060 | 
+======================================================================
+2026-06-14 21:21:34,060 | FINAL RESULTS SUMMARY
+2026-06-14 21:21:34,060 | ======================================================================
+2026-06-14 21:21:34,060 |   Baseline (HuBERT-only, simple): UA = 0.6359 +/- 0.0206
+2026-06-14 21:21:34,060 |   CMSMET  (MERT+SupCon+LP-FT):    UA = 0.6057 +/- 0.0312
+2026-06-14 21:21:34,060 |   Improvement:                   ΔUA = -0.0302 (-3.02%)
+2026-06-14 21:21:34,069 |   Statistical significance:      t=-4.624, p=0.0004 ***
+2026-06-14 21:21:34,069 | ======================================================================
+
+2026-06-14 21:21:34,074 | Saved full results to C:\Users\Faraz\CMSMET\outputs\paper_results\experiment_results.json
+2026-06-14 21:21:34,075 | Saved paper table to C:\Users\Faraz\CMSMET\outputs\paper_results\paper_table.txt
+2026-06-14 21:21:34,077 | Saved LaTeX table to C:\Users\Faraz\CMSMET\outputs\paper_results\paper_table.tex
+2026-06-14 21:21:34,938 | Saved confusion matrices to C:\Users\Faraz\CMSMET\outputs\paper_results\confusion_matrices.png
+2026-06-14 21:21:34,939 | 
+Total time: 18.5 minutes
+2026-06-14 21:21:34,939 | Done! Paper-ready results saved.
