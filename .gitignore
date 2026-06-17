@@ -31,8 +31,8 @@ deam_data/
 *.pt
 *.pth
 *.ckpt
-checkpoints/
-models/
+/checkpoints/
+/models/
 
 # Outputs (keep paper results, exclude large files)
 outputs/embeddings/
@@ -42,7 +42,7 @@ outputs/embeddings/
 .cache/
 *.pkl
 *.pickle
-cache/
+/cache/
 
 # OS
 .DS_Store
