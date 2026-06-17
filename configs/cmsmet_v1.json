@@ -1,0 +1,60 @@
+# CMSMET Configuration Example
+# Copy this file and modify as needed
+
+{
+  "experiment_name": "cmsmet_v1_contrastive",
+  "run_id": null,
+  "seed": 42,
+  "data": {
+    "iemocap_root": "C:\\Users\\Faraz\\CMSMET\\IEMOCAP_full_release",
+    "deam_root": "C:\\Users\\Faraz\\CMSMET\\deam_data",
+    "speech_sr": 16000,
+    "music_sr": 16000,
+    "min_duration": 0.5,
+    "max_duration": 30.0,
+    "train_split": 0.7,
+    "val_split": 0.15,
+    "test_split": 0.15,
+    "batch_size": 32,
+    "num_workers": 4,
+    "pin_memory": true
+  },
+  "encoder": {
+    "speech_encoder_model": "facebook/hubert-base-ls960",
+    "speech_encoder_output_dim": 768,
+    "speech_use_pretrained": true,
+    "music_encoder_model": "m-a-p/MERT-v1-95M",
+    "music_encoder_output_dim": 256,
+    "music_use_pretrained": true,
+    "embedding_dim": 128,
+    "dropout": 0.2
+  },
+  "contrastive": {
+    "temperature": 0.07,
+    "loss_type": "supcon"
+  },
+  "training": {
+    "num_epochs": 50,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.00001,
+    "warmup_steps": 1000,
+    "optimizer": "adamw",
+    "scheduler": "cosine",
+    "gradient_clip": 1.0,
+    "device": "cuda",
+    "save_every_n_epochs": 5,
+    "log_every_n_steps": 100,
+    "patience": 10,
+    "min_delta": 0.0001
+  },
+  "evaluation": {
+    "compute_correlation": true,
+    "compute_concordance_cc": true,
+    "probe_classifier_hidden_dim": 256,
+    "probe_lr": 0.001,
+    "probe_epochs": 20,
+    "save_embeddings": true,
+    "save_visualizations": true
+  },
+  "output_root": "C:\\Users\\Faraz\\CMSMET\\outputs"
+}
