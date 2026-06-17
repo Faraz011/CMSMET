@@ -1,0 +1,55 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Data
+IEMOCAP_full_release/
+deam_data/
+*.mp3
+*.wav
+*.flac
+
+# Models and checkpoints
+*.pt
+*.pth
+*.ckpt
+checkpoints/
+models/
+
+# Outputs (keep paper results, exclude large files)
+outputs/embeddings/
+*.npy
+
+# Caches
+.cache/
+*.pkl
+*.pickle
+cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+.env
+.env.local
+*.tmp
+*.egg-info/
